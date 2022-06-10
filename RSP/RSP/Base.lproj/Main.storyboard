@@ -181,6 +181,15 @@
                                     <constraint firstAttribute="height" constant="40" id="Ot0-jb-bl3"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FhO-aM-FKf">
+                                <rect key="frame" x="232" y="269" width="125" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="125" id="w59-ud-jtW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -189,8 +198,10 @@
                             <constraint firstItem="bv8-My-Pt6" firstAttribute="top" secondItem="Vxg-vT-Low" secondAttribute="bottom" constant="30" id="3KU-gu-1vp"/>
                             <constraint firstItem="Vf7-cG-Hnj" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="75" id="5fr-UM-Dyo"/>
                             <constraint firstItem="Vxg-vT-Low" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6xy-gq-OyH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FhO-aM-FKf" secondAttribute="trailing" constant="57" id="8CH-ED-FmI"/>
                             <constraint firstItem="bv8-My-Pt6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="9tQ-tP-lCE"/>
                             <constraint firstItem="Vf7-cG-Hnj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AMB-MP-TRf"/>
+                            <constraint firstItem="Vxg-vT-Low" firstAttribute="top" secondItem="FhO-aM-FKf" secondAttribute="bottom" constant="15" id="Hdj-IF-OHP"/>
                             <constraint firstItem="fFW-gg-r6c" firstAttribute="top" secondItem="Vf7-cG-Hnj" secondAttribute="bottom" constant="15" id="Ule-mx-GET"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bv8-My-Pt6" secondAttribute="trailing" constant="30" id="eSl-s9-mqR"/>
                             <constraint firstItem="fFW-gg-r6c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fZr-qF-PHC"/>
@@ -204,7 +215,10 @@
                         <outlet property="computerImageView" destination="yOy-0g-xzd" id="QTq-il-SIS"/>
                         <outlet property="playerChoiceLabel" destination="xk5-jf-mqM" id="mDI-ZZ-hfG"/>
                         <outlet property="playerImageView" destination="MNF-Ca-tM4" id="TmK-e2-vDu"/>
+                        <outlet property="resetBtn" destination="u0f-kW-juF" id="ApH-nP-1p8"/>
+                        <outlet property="selectBtn" destination="zbK-A3-KmW" id="7WW-Ww-3tt"/>
                         <outlet property="topMainLabel" destination="fFW-gg-r6c" id="Kt2-Mz-A5O"/>
+                        <outlet property="winStreakTextLabel" destination="FhO-aM-FKf" id="wh7-6W-dip"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -18,6 +18,13 @@ class ViewController: UIViewController {
 	
 	@IBOutlet weak var playerImageView: UIImageView!
 	@IBOutlet weak var playerChoiceLabel: UILabel!
+
+	@IBOutlet weak var selectBtn: UIButton!
+	@IBOutlet weak var resetBtn: UIButton!
+	
+	@IBOutlet weak var winStreakTextLabel: UILabel!
+	
+	var winStreakCnt: Int = 0;
 	
 	var playerChoice: Rsp = Rsp.rock
 	
@@ -34,6 +41,7 @@ class ViewController: UIViewController {
 		playerImageView.image = UIImage(named:"ready")
 		playerChoiceLabel.text = "player ready"
 		
+		resetBtn.isHidden = true
 	}
 	
 	// one func can control several Variables
@@ -83,13 +91,28 @@ class ViewController: UIViewController {
 			topMainLabel.text = "Draw!"
 		} else if computerChoice == .rock, playerChoice == .paper {
 			topMainLabel.text = "Player Wins!"
+			winStreakTextLabel.isHidden = false
+			winStreakCnt += 1
+			winStreakTextLabel.text = "🔥Win Streak : " + String(winStreakCnt)
 		} else if computerChoice == .scissors, playerChoice == .rock {
 			topMainLabel.text = "Player Wins!"
+			winStreakTextLabel.isHidden = false
+			winStreakCnt += 1
+			winStreakTextLabel.text = "🔥Win Streak : " + String(winStreakCnt)
 		} else if computerChoice == .paper, playerChoice == .scissors {
 			topMainLabel.text = "Player Wins!"
+			winStreakTextLabel.isHidden = false
+			winStreakCnt += 1
+			winStreakTextLabel.text = "🔥Win Streak : " + String(winStreakCnt)
 		} else {
 			topMainLabel.text = "Computer Wins!"
+			winStreakTextLabel.isHidden = true
+			winStreakCnt = 0
 		}
+		
+		
+		resetBtn.isHidden = false
+		selectBtn.isHidden = true
 	}
 	
 	@IBAction func resetBtnTapped(_ sender: UIButton) {
@@ -103,6 +126,10 @@ class ViewController: UIViewController {
 		
 		// computer initialize
 		computerChoice = Rsp(rawValue: Int.random(in: 0...2))!
+		
+		// button hide
+		resetBtn.isHidden = true
+		selectBtn.isHidden = false
 	}
 }
 
