@@ -13,3 +13,13 @@ toyprojects in Swift
   + player choices one
   + the top label shows the result
   + can reset everything to restart
+---
+3. Updown Game(220611)
+- **Description**
+  + simple Updown Game
+---
+4. Implement Practice(220719~)
+4.1. Implement Timer
+- **Description**
+  + Timer Implement
+  + Using Timer Class, UISlider
