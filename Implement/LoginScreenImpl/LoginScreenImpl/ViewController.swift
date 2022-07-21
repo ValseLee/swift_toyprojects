@@ -8,7 +8,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-	
 	private let textHeight = 48.0
 	
 	// Config: emailTextFieldView - basic setting
@@ -27,7 +26,7 @@ class ViewController: UIViewController {
 	private var emailInfoLabel: UILabel = {
 		let label = UILabel()
 		label.text = "이메일주소 또는 전화번호"
-		label.font = UIFont.systemFont(ofSize: 10)
+		label.font = UIFont.systemFont(ofSize: 18)
 		label.textColor = UIColor.white
 		return label
 	}()
@@ -42,6 +41,7 @@ class ViewController: UIViewController {
 		tf.tintColor = .white
 		tf.backgroundColor = .clear
 		tf.frame.size.height = 48
+		tf.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged)
 		return tf
 	}()
 	
@@ -62,7 +62,7 @@ class ViewController: UIViewController {
 	private var passwordInfoLabel: UILabel = {
 		let label = UILabel()
 		label.text = "비밀번호"
-		label.font = UIFont.systemFont(ofSize: 10)
+		label.font = UIFont.systemFont(ofSize: 18)
 		label.textColor = UIColor.white
 		return label
 	}()
@@ -79,13 +79,14 @@ class ViewController: UIViewController {
 		tf.isSecureTextEntry = true
 		tf.clearsOnBeginEditing = false
 		tf.frame.size.height = 48
+		tf.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged)
 		return tf
 	}()
 	
 	private let passwordSecureBtn: UIButton = {
 		let btn = UIButton(type: .custom)
-		btn.setTitle("X", for: .normal)
-		btn.setTitleColor(UIColor.gray, for: .normal)
+		btn.setTitle("Show", for: .normal)
+		btn.setTitleColor(UIColor.darkGray, for: .normal)
 		btn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .light)
 		btn.addTarget(self, action: #selector(passwordSecureModeControll), for: .touchUpInside)
 		return btn
@@ -102,6 +103,7 @@ class ViewController: UIViewController {
 		btn.setTitle("Login", for: .normal)
 		btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
 		btn.isEnabled = false
+		btn.addTarget(self, action: #selector(loginBtnTapped), for: .touchUpInside)
 		return btn
 	}()
 	
@@ -123,9 +125,18 @@ class ViewController: UIViewController {
 		btn.addTarget(self, action: #selector(resetBtnTapped), for: .touchUpInside)
 		return btn
 	}()
+	
+	// Config: to Use Dynamic Label Layout, Assigning variable
+	lazy var emailInfoLabelCenterYConstrain = emailInfoLabel.centerYAnchor.constraint(equalTo: emailTextFieldView.centerYAnchor)
+	lazy var passwordInfoLabelCenterYConstrain = passwordInfoLabel.centerYAnchor.constraint(equalTo: passwordTextFieldView.centerYAnchor)
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		// Config: delegate
+		emailTextField.delegate = self
+		passwordTextField.delegate = self
+		
 		configureUI()
 	}
 	
@@ -152,7 +163,8 @@ class ViewController: UIViewController {
 		NSLayoutConstraint.activate([
 			emailInfoLabel.leadingAnchor.constraint(equalTo: emailTextFieldView.leadingAnchor, constant: 8.0),
 			emailInfoLabel.trailingAnchor.constraint(equalTo: emailTextFieldView.trailingAnchor, constant: -8.0),
-			emailInfoLabel.centerYAnchor.constraint(equalTo: emailTextFieldView.centerYAnchor),
+			// emailInfoLabel.centerYAnchor.constraint(equalTo: emailTextFieldView.centerYAnchor),
+			emailInfoLabelCenterYConstrain,
 			
 			emailTextField.leadingAnchor.constraint(equalTo: emailTextFieldView.leadingAnchor, constant: 8.0),
 			emailTextField.trailingAnchor.constraint(equalTo: emailTextFieldView.trailingAnchor, constant: -8.0),
@@ -161,7 +173,8 @@ class ViewController: UIViewController {
 			
 			passwordInfoLabel.leadingAnchor.constraint(equalTo: passwordTextFieldView.leadingAnchor, constant: 8.0),
 			passwordInfoLabel.trailingAnchor.constraint(equalTo: passwordTextFieldView.trailingAnchor, constant: -8.0),
-			passwordInfoLabel.centerYAnchor.constraint(equalTo: passwordTextFieldView.centerYAnchor),
+			// passwordInfoLabel.centerYAnchor.constraint(equalTo: passwordTextFieldView.centerYAnchor),
+			passwordInfoLabelCenterYConstrain,
 			
 			passwordTextField.leadingAnchor.constraint(equalTo: passwordTextFieldView.leadingAnchor, constant: 8.0),
 			passwordTextField.trailingAnchor.constraint(equalTo: passwordTextFieldView.trailingAnchor, constant: -8.0),
@@ -212,3 +225,84 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController: UITextFieldDelegate {
+	func textFieldDidBeginEditing(_ textField: UITextField) {
+		if textField == emailTextField {
+			emailTextFieldView.backgroundColor = UIColor.gray
+			emailInfoLabel.font = UIFont.systemFont(ofSize: 11)
+			emailInfoLabelCenterYConstrain.constant = -13.0
+		}
+		
+		if textField == passwordTextField {
+			passwordTextFieldView.backgroundColor = UIColor.gray
+			passwordInfoLabel.font = UIFont.systemFont(ofSize: 11)
+			passwordInfoLabelCenterYConstrain.constant = -13.0
+		}
+		
+		// Autolayout animate
+		UIView.animate(withDuration: 0.3) {
+			self.stackV.layoutIfNeeded()
+		}
+	
+	}
+	
+	func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+		if textField == emailTextField {
+			emailTextFieldView.backgroundColor = UIColor.darkGray
+			if emailTextField.text == "" {
+				emailInfoLabel.font = UIFont.systemFont(ofSize: 18)
+				emailInfoLabelCenterYConstrain.constant = 0
+			}
+		}
+		
+		if textField == passwordTextField {
+			passwordTextFieldView.backgroundColor = UIColor.darkGray
+			if passwordTextField.text == "" {
+				passwordInfoLabel.font = UIFont.systemFont(ofSize: 18)
+				passwordInfoLabelCenterYConstrain.constant = 0
+			}
+		}
+		
+		UIView.animate(withDuration: 0.3) {
+			self.stackV.layoutIfNeeded()
+		}
+	}
+	
+	// Method: Login Btn Color Change
+	@objc func textFieldEditingChanged(textField: UITextField) {
+		if textField.text?.count == 1 {
+			if textField.text?.first == " " {
+				textField.text = ""
+				return
+			}
+		}
+		guard
+			let email = emailTextField.text, !email.isEmpty,
+			let password = passwordTextField.text, !password.isEmpty else {
+			loginBtn.backgroundColor = .clear
+			loginBtn.layer.borderColor = #colorLiteral(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+			loginBtn.isEnabled = false
+			return
+		}
+		loginBtn.backgroundColor = .red
+		loginBtn.layer.borderColor = .none
+		loginBtn.isEnabled = true
+	}
+	
+	@objc func loginBtnTapped() {
+		let alert = UIAlertController(title: "Login Failed", message: "Not Implemented Yet :(", preferredStyle: .alert)
+		let success = UIAlertAction(title: "What?", style: .default) { action in }
+		let cancel = UIAlertAction(title: "No Way", style: .default) { action in }
+		alert.addAction(success)
+		alert.addAction(cancel)
+		
+		// Login Btn reset
+		present(alert, animated: true) { [weak self] in
+			if let weakSelf = self {
+				weakSelf.loginBtn.backgroundColor = .clear
+				weakSelf.loginBtn.layer.borderColor = #colorLiteral(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+				weakSelf.loginBtn.isEnabled = false
+			}
+		}
+	}
+}
