@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 	private let textHeight = 48.0
 	
 	// Config: emailTextFieldView - basic setting
