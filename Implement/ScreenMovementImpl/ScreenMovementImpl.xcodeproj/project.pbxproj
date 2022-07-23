@@ -14,6 +14,7 @@
 		703784EA288BACFE0095727C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 703784E9288BACFE0095727C /* Assets.xcassets */; };
 		703784ED288BACFE0095727C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 703784EB288BACFE0095727C /* LaunchScreen.storyboard */; };
 		703784F5288BADFE0095727C /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703784F4288BADFE0095727C /* FirstVC.swift */; };
+		703784F7288BC1150095727C /* SecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703784F6288BC1150095727C /* SecondVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		703784EC288BACFE0095727C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		703784EE288BACFE0095727C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		703784F4288BADFE0095727C /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
+		703784F6288BC1150095727C /* SecondVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				703784E0288BACFD0095727C /* AppDelegate.swift */,
 				703784E2288BACFD0095727C /* SceneDelegate.swift */,
 				703784E4288BACFD0095727C /* ViewController.swift */,
+				703784F6288BC1150095727C /* SecondVC.swift */,
 				703784F4288BADFE0095727C /* FirstVC.swift */,
 				703784E6288BACFD0095727C /* Main.storyboard */,
 				703784E9288BACFE0095727C /* Assets.xcassets */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				703784E5288BACFD0095727C /* ViewController.swift in Sources */,
+				703784F7288BC1150095727C /* SecondVC.swift in Sources */,
 				703784F5288BADFE0095727C /* FirstVC.swift in Sources */,
 				703784E1288BACFD0095727C /* AppDelegate.swift in Sources */,
 				703784E3288BACFD0095727C /* SceneDelegate.swift in Sources */,
