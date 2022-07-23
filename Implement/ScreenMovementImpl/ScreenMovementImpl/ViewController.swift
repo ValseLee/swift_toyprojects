@@ -46,8 +46,21 @@ class ViewController: UIViewController {
 		// 그래서 코드랑 스토리보드가 연결되기 전에 secondVCLabel에 접근해서 값을 넣으면 에러가 리턴
 		// secondVC.secondVCLabel.text = "?" 이렇게 구현하지 않도록 주의합시당
 		
-		
 		present(secondVC, animated: true, completion: nil)
+	}
+	
+	// 3. 스토리보드에서 만든 세그웨이를 통해 화면 이동
+	@IBAction func storyboradWithSegueBtnTapped(_ sender: UIButton) {
+		performSegue(withIdentifier: "toThirdVC", sender: self)
+	}
+	
+	// 3.1. 세그웨이를 통해 보낼 데이터를 처리
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		// 1. identifier 를 확인해서 segue의 이동지를 ThirdVC 클래스로 타입캐스팅 생성
+		if segue.identifier == "toThirdVC" {
+			let thirdVC = segue.destination as! ThirdVC
+			thirdVC.someStr = "3번 뷰컨"
+		}
 	}
 }
 
