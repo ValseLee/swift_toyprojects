@@ -61,6 +61,19 @@ class ViewController: UIViewController {
 			let thirdVC = segue.destination as! ThirdVC
 			thirdVC.someStr = "3번 뷰컨"
 		}
+		
+		if segue.identifier == "toFourthVC" {
+			let fourthVC = segue.destination as! FourthVC
+			fourthVC.someStr = "4번"
+		}
+	}
+	
+	// 4. 스토리보드의 '버튼'에서 끌어서 세그웨이 생성 후 화면이동(직접 세그웨이)
+	// 직접 세그웨이의 경우, shouldPerformSegue 메소드를 사용할 수 있다.
+	// 조건에 따라 세그웨이 실행 여부를 결정할 수 있다.
+	override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+		// if { ...code... }
+		return true
 	}
 }
 
